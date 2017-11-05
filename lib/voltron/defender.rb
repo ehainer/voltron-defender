@@ -38,8 +38,19 @@ module Voltron
           handle(error) if error.save
         end
 
+        Rails.logger.debug '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+        Rails.logger.debug '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+        Rails.logger.debug '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+        Rails.logger.debug '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+        Rails.logger.debug Voltron.config.defender.ip_restrict_errors
+        Rails.logger.debug env['REMOTE_ADDR']
+        Rails.logger.debug Voltron.config.defender.has_ip?(env['REMOTE_ADDR'])
+        Rails.logger.debug '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+        Rails.logger.debug '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+        Rails.logger.debug '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+        Rails.logger.debug '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
         if Voltron.config.defender.ip_restrict_errors
-          if Voltron.config.defender.has_ip?(env.try(:[], 'REMOTE_ADDR'))
+          if Voltron.config.defender.has_ip?(env['REMOTE_ADDR'])
             env['action_dispatch.show_detailed_exceptions'] = true
           end
         end
